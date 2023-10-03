@@ -6,19 +6,27 @@ export class UpdateStudentDto extends PartialType(CreateStudentDto) {
   @IsString()
   @MaxLength(30)
   @IsNotEmpty()
-  readonly name?: string;
-  @IsNumber()
-  @IsNotEmpty()
-  readonly rollNumber?: number;
+  readonly first_name: string;
 
-  @IsString()
-  @IsNotEmpty()
-  readonly class?: string;
   @IsString()
   @MaxLength(30)
   @IsNotEmpty()
-  readonly gender?: string;
+  readonly last_name: string;
+
   @IsNumber()
   @IsNotEmpty()
-  readonly marks?: number;
+  readonly roll_no: number;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly class: string;
+
+  @IsString()
+  @MaxLength(30)
+  @IsNotEmpty()
+  readonly gender: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  readonly phone_no: string;
 }

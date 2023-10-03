@@ -1,54 +1,26 @@
 /* eslint-disable prettier/prettier */
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpStatus,
-  Param,
-  Post,
-  Put,
-  Res,
-} from '@nestjs/common';
-import { CreateStudentDto } from 'src/libs/dto/create-student.dto';
-import { UpdateStudentDto } from 'src/libs/dto/update-student.dto';
-import { StudentService } from '../services/student.service';
-@Controller('school/student')
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
+import { CreateStudentDto } from 'src/students/dto/create-student.dto';
+import { UpdateStudentDto } from 'src/students/dto/update-student.dto';
+import { StudentService } from './student.service';
+@Controller('students')
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
   @Post()
-  async createStudent(
-    @Res() response,
-    @Body() createStudentDto: CreateStudentDto,
-  ) {
-    try {
-      const newStudent =
-        await this.studentService.createStudent(createStudentDto);
-      return response.status(HttpStatus.CREATED).json({
-        message: 'Student has been created successfully',
-        newStudent,
-      });
-    } catch (e) {
-      return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: e.statusCode,
-        message: 'Error: Student not created!',
-        error: 'Bad Request',
-      });
-    }
+  @HttpCode(201)
+  async createStudent(@Body() createStudentDto: CreateStudentDto) {
+    const newStudent = await this.studentService.createStudent(createStudentDto);
+    return {
+      message: 'Student has been created successfully',
+      newStudent,
+    };
   }
 
   @Put('/:id')
-  async updateStudent(
-    @Res() response,
-    @Param('id') studentId: string,
-    @Body() updateStudentDto: UpdateStudentDto,
-  ) {
+  async updateStudent(@Res() response, @Param('id') studentId: string, @Body() updateStudentDto: UpdateStudentDto) {
     try {
-      const existingStudent = await this.studentService.updateStudent(
-        studentId,
-        updateStudentDto,
-      );
+      const existingStudent = await this.studentService.updateStudent(studentId, updateStudentDto);
       return response.status(HttpStatus.OK).json({
         message: 'Student has been successfully updated',
         existingStudent,
@@ -85,6 +57,7 @@ export class StudentController {
   }
 
   @Delete('/:id')
+  @HttpCode(204)
   async deleteStudent(@Res() response, @Param('id') studentId: string) {
     try {
       const deletedStudent = await this.studentService.deleteStudent(studentId);

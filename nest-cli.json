@@ -3,6 +3,18 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true
+  },
+  "projects": {
+    "tubers": {
+      "type": "library",
+      "root": "libs/tubers",
+      "entryFile": "index",
+      "sourceRoot": "libs/tubers/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/tubers/tsconfig.lib.json"
+      }
+    }
   }
 }

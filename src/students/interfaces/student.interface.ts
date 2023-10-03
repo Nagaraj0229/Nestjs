@@ -2,9 +2,10 @@
 import { Document } from 'mongoose';
 
 export interface IStudent extends Document {
-  name?: string;
-  rollNumber?: number;
+  first_name?: string;
+  last_name?: string;
+  roll_no?: number;
   class?: string;
   gender?: string;
-  marks?: number;
+  phone_no?: string;
 }
