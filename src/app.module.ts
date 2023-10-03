@@ -10,7 +10,7 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://nagaraj03:Nabi0229@amwhiz.ozlipso.mongodb.net/'),
+    MongooseModule.forRoot('mongodb+srv://nagaraj03:Nabi0229@amwhiz.ozlipso.mongodb.net/?retryWrites=true&w=majority'),
     MongooseModule.forFeature([{ name: 'School/Student', schema: StudentSchema }]),
     StudentsModule,
   ],
