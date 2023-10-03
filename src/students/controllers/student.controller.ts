@@ -16,6 +16,7 @@ import { StudentService } from '../services/student.service';
 @Controller('school/student')
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
+
   @Post()
   async createStudent(
     @Res() response,
@@ -36,6 +37,7 @@ export class StudentController {
       });
     }
   }
+
   @Put('/:id')
   async updateStudent(
     @Res() response,
@@ -55,6 +57,7 @@ export class StudentController {
       return response.status(err.status).json(err.response);
     }
   }
+
   @Get()
   async getStudents(@Res() response) {
     try {
@@ -67,6 +70,7 @@ export class StudentController {
       return response.status(err.status).json(err.response);
     }
   }
+
   @Get('/:id')
   async getStudent(@Res() response, @Param('id') studentId: string) {
     try {
@@ -79,6 +83,7 @@ export class StudentController {
       return response.status(err.status).json(err.response);
     }
   }
+
   @Delete('/:id')
   async deleteStudent(@Res() response, @Param('id') studentId: string) {
     try {

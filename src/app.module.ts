@@ -4,6 +4,7 @@ import { StudentController } from './students/controllers/student.controller';
 
 import { StudentSchema } from './libs/schema/student.schema';
 import { StudentService } from './students/services/student.service';
+
 @Module({
   imports: [
     MongooseModule.forRoot(
