@@ -1,7 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { HubspotService } from './hubspot.service';
+/* eslint-disable prettier/prettier */
+import { Test, TestingModule } from "@nestjs/testing";
+import { HubspotService } from "./hubspot.service";
 
-describe('HubspotService', () => {
+describe("HubspotService", () => {
   let service: HubspotService;
 
   beforeEach(async () => {
@@ -12,7 +13,7 @@ describe('HubspotService', () => {
     service = module.get<HubspotService>(HubspotService);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 });
