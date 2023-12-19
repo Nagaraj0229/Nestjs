@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateStudentDto } from './create-student.dto';
-import { IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
+import { PartialType } from "@nestjs/mapped-types";
+import { CreateStudentDto } from "./create-student.dto";
+import { IsNotEmpty, IsNumber, IsString, MaxLength } from "class-validator";
 export class UpdateStudentDto extends PartialType(CreateStudentDto) {
   @IsString()
   @MaxLength(30)
