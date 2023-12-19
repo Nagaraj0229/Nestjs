@@ -7,34 +7,49 @@ import { Model } from 'mongoose';
 import { UpdateStudentDto } from 'src/students/dto/update-student.dto';
 
 @Injectable()
-export class StudentService {
-  constructor(@InjectModel('School/Student') private studentModel: Model<IStudent>) {}
+export default class StudentService {
+  constructor(
+    @InjectModel('School/Student')
+    public studentModel: Model<IStudent>,
+  ) {}
 
-  async createStudent(createStudentDto: CreateStudentDto): Promise<IStudent> {
-    const newStudent = new this.studentModel(createStudentDto);
-    return newStudent.save();
+  public async createStudent(createStudentDto: CreateStudentDto): Promise<IStudent> {
+    try {
+      const newStudent = new this.studentModel(createStudentDto);
+      return newStudent.save();
+    } catch (e: any) {
+      console.error('StudentService: Cannot Create Student', { error: e?.message });
+    }
   }
 
-  async updateStudent(studentId: string, updateStudentDto: UpdateStudentDto): Promise<IStudent> {
-    const existingStudent = await this.studentModel.findByIdAndUpdate(studentId, updateStudentDto, { new: true });
-    if (!existingStudent) throw new NotFoundException(`Student not found`);
-    return existingStudent;
+  public async updateStudent(studentId: string, updateStudentDto: UpdateStudentDto): Promise<IStudent> {
+    try {
+      const existingStudent = await this.studentModel.findByIdAndUpdate(studentId, updateStudentDto, { new: true });
+      if (!existingStudent) throw new NotFoundException(`Student not found`);
+      return existingStudent;
+    } catch (e: any) {}
   }
 
-  async getAllStudents(): Promise<IStudent[]> {
-    const studentData = await this.studentModel.find();
-    return studentData;
+  public async getAllStudents(): Promise<IStudent[]> {
+    try {
+      const studentData = await this.studentModel.find();
+      return studentData;
+    } catch (e: any) {}
   }
 
-  async getStudent(studentId: string): Promise<IStudent> {
-    const existingStudent = await this.studentModel.findById(studentId).exec();
-    if (!existingStudent) throw new NotFoundException(`Student ${studentId} not found`);
-    return existingStudent;
+  public async getStudent(studentId: string): Promise<IStudent> {
+    try {
+      const existingStudent = await this.studentModel.findById(studentId).exec();
+      if (!existingStudent) throw new NotFoundException(`Student ${studentId} not found`);
+      return existingStudent;
+    } catch (e: any) {}
   }
 
-  async deleteStudent(studentId: string): Promise<IStudent> {
-    const deletedStudent = await this.studentModel.findByIdAndDelete(studentId);
-    if (!deletedStudent) throw new NotFoundException(`Student #${studentId} not found`);
-    return deletedStudent as any;
+  public async deleteStudent(studentId: string): Promise<IStudent> {
+    try {
+      const deletedStudent = await this.studentModel.findByIdAndDelete(studentId);
+      if (!deletedStudent) throw new NotFoundException(`Student #${studentId} not found`);
+      return deletedStudent as any;
+    } catch (e: any) {}
   }
 }

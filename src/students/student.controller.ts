@@ -2,7 +2,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
 import { CreateStudentDto } from 'src/students/dto/create-student.dto';
 import { UpdateStudentDto } from 'src/students/dto/update-student.dto';
-import { StudentService } from './student.service';
+import StudentService from './student.service';
 @Controller('students')
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
