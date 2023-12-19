@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Test, TestingModule } from "@nestjs/testing";
-import { HubspotService } from "./hubspot.service";
+import { Test, TestingModule } from '@nestjs/testing';
+import { HubspotService } from './hubspot.service';
 
 describe("HubspotService", () => {
   let service: HubspotService;
