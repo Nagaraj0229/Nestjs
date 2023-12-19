@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config'; // Import ConfigModule
 import { MongooseModule } from '@nestjs/mongoose';
 import { StudentController } from './students/student.controller';
-
 import { StudentSchema } from './schema/student';
 import { StudentService } from './students/student.service';
 import { StudentsModule } from './students/students.module';
@@ -10,7 +10,8 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://nagaraj03:Nabi0229@amwhiz.ozlipso.mongodb.net/?retryWrites=true&w=majority'),
+    ConfigModule.forRoot(), // Load the configuration module
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     MongooseModule.forFeature([{ name: 'School/Student', schema: StudentSchema }]),
     StudentsModule,
   ],
