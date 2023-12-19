@@ -6,6 +6,8 @@ import StudentController from "./students/student.controller";
 import { StudentSchema } from "./schema/student";
 import StudentService from "./students/student.service";
 import { StudentsModule } from "./students/students.module";
+import { HubspotController } from "./hubspot/hubspot.controller";
+import { HubspotService } from './hubspot/hubspot.service';
 
 @Module({
   imports: [
@@ -16,7 +18,7 @@ import { StudentsModule } from "./students/students.module";
     ]),
     StudentsModule,
   ],
-  controllers: [StudentController],
-  providers: [StudentService],
+  controllers: [StudentController, HubspotController],
+  providers: [StudentService, HubspotService],
 })
 export class AppModule {}
