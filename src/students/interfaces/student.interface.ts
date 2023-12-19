@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Document } from 'mongoose';
+import { Document } from "mongoose";
 
 export interface IStudent extends Document {
   first_name?: string;
