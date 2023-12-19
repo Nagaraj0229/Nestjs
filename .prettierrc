@@ -1,5 +1,15 @@
 {
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 120
+  "prettier/prettier": [
+    "error",
+    {},
+    {
+      "fileInfoOptions": {
+        "withNodeModules": true,
+        "singleQuote": true,
+        "parser": "flow",
+        "trailingComma": "all",
+        "printWidth": 120
+      }
+    }
+  ]
 }
