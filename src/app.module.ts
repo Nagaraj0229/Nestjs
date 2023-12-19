@@ -9,8 +9,7 @@ import { StudentsModule } from './students/students.module';
 
 @Module({
   imports: [
-    // MongoDb connection with .env environment config
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot(), // Load the configuration module
     MongooseModule.forRoot(process.env.MONGODB_URI),
     MongooseModule.forFeature([{ name: 'School/Student', schema: StudentSchema }]),
     StudentsModule,
