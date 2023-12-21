@@ -9,6 +9,7 @@ export const databaseProviders = [
         type: "mongodb", // Use 'mongodb' instead of 'mysql'
         host: "localhost",
         port: 27017, // Default MongoDB port
+        //  Instance database value replaces to connection String for an MongoDB
         database: "test",
         useNewUrlParser: true,
         useUnifiedTopology: true,
