@@ -2,10 +2,11 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config"; // Import ConfigModule
 import { MongooseModule } from "@nestjs/mongoose";
-import StudentController from "./students/student.controller";
+import { CatController } from "./cats/cat.controller";
 import { StudentSchema } from "./schema/student";
-import StudentService from "./students/student.service";
+import CatService from "./students/student.service";
 import { StudentsModule } from "./students/students.module";
+import { StudentModule } from "./cats/cat.module";
 
 @Module({
   imports: [
@@ -15,8 +16,9 @@ import { StudentsModule } from "./students/students.module";
       { name: "School/Student", schema: StudentSchema },
     ]),
     StudentsModule,
+    StudentModule,
   ],
-  controllers: [StudentController],
-  providers: [StudentService],
+  controllers: [CatController],
+  providers: [CatService],
 })
 export class AppModule {}
